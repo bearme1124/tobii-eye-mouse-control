@@ -1,0 +1,17 @@
+C:\Users\SIDLAB\source\repos\bearme1124\tobii-eye-mouse-control\TobiiFormApp\bin\Release\Tobii.EyeX.Client.dll
+C:\Users\SIDLAB\source\repos\bearme1124\tobii-eye-mouse-control\TobiiFormApp\bin\Release\TobiiFormApp.exe.config
+C:\Users\SIDLAB\source\repos\bearme1124\tobii-eye-mouse-control\TobiiFormApp\bin\Release\TobiiFormApp.exe
+C:\Users\SIDLAB\source\repos\bearme1124\tobii-eye-mouse-control\TobiiFormApp\bin\Release\TobiiFormApp.pdb
+C:\Users\SIDLAB\source\repos\bearme1124\tobii-eye-mouse-control\TobiiFormApp\bin\Release\Gma.System.MouseKeyHook.dll
+C:\Users\SIDLAB\source\repos\bearme1124\tobii-eye-mouse-control\TobiiFormApp\bin\Release\Tobii.Interaction.Model.dll
+C:\Users\SIDLAB\source\repos\bearme1124\tobii-eye-mouse-control\TobiiFormApp\bin\Release\Tobii.Interaction.Net.dll
+C:\Users\SIDLAB\source\repos\bearme1124\tobii-eye-mouse-control\TobiiFormApp\bin\Release\WindowsInput.dll
+C:\Users\SIDLAB\source\repos\bearme1124\tobii-eye-mouse-control\TobiiFormApp\bin\Release\WindowsInput.xml
+C:\Users\SIDLAB\source\repos\bearme1124\tobii-eye-mouse-control\TobiiFormApp\obj\Release\TobiiFormApp.csproj.AssemblyReference.cache
+C:\Users\SIDLAB\source\repos\bearme1124\tobii-eye-mouse-control\TobiiFormApp\obj\Release\TobiiFormApp.Form1.resources
+C:\Users\SIDLAB\source\repos\bearme1124\tobii-eye-mouse-control\TobiiFormApp\obj\Release\TobiiFormApp.Properties.Resources.resources
+C:\Users\SIDLAB\source\repos\bearme1124\tobii-eye-mouse-control\TobiiFormApp\obj\Release\TobiiFormApp.csproj.GenerateResource.cache
+C:\Users\SIDLAB\source\repos\bearme1124\tobii-eye-mouse-control\TobiiFormApp\obj\Release\TobiiFormApp.csproj.CoreCompileInputs.cache
+C:\Users\SIDLAB\source\repos\bearme1124\tobii-eye-mouse-control\TobiiFormApp\obj\Release\TobiiFormApp.csproj.CopyComplete
+C:\Users\SIDLAB\source\repos\bearme1124\tobii-eye-mouse-control\TobiiFormApp\obj\Release\TobiiFormApp.exe
+C:\Users\SIDLAB\source\repos\bearme1124\tobii-eye-mouse-control\TobiiFormApp\obj\Release\TobiiFormApp.pdb
