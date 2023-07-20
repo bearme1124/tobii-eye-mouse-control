@@ -15,9 +15,11 @@ namespace TobiiFormApp
 {
     static class Program
     {
+
         private static Point prevPos;
         private static bool hasPrevPos;
-        private static float alpha_smooth = 0.3f;
+        
+        
 
         private enum filters {Smooth, Averaged, Euro, Unfiltered};
 
@@ -26,17 +28,23 @@ namespace TobiiFormApp
 
         private static Form1 form;
         private static IKeyboardMouseEvents m_GlobalHook;
+        public static float alpha_smooth;
+        public static double beta;
+        public static double mincutoff;
+        public static OneEuroFilter filterX;
+        public static OneEuroFilter filterY;
 
         #region EUROFilter
 
+
         private static readonly double rate = 133; // 이 값은 tobii로 부터 받아오는 값
-        private static readonly double mincutoff = 0.007; // 여기 바꾸거나
-        private static readonly double beta = 0.03; //여기 바꾸거나
+        //public static double mincutoff = 0.007; // 여기 바꾸거나
+        //public static double beta = 0.03; //여기 바꾸거나
          
         public static long GetTimestamp() // 이 값에 1000을 나눠야 second 단위임.
         {
             return DateTimeOffset.Now.ToUnixTimeMilliseconds();
-        }
+        }  
 
         public class OneEuroFilter
         {
@@ -158,8 +166,6 @@ namespace TobiiFormApp
         #endregion
 
         //Applies a filter to the point based on currently selected setting
-        public static OneEuroFilter filterX = new OneEuroFilter(mincutoff, beta);
-        public static OneEuroFilter filterY = new OneEuroFilter(mincutoff, beta);
         private static Point SmoothFilter(Point point)
         {
             //checks which filter is selected
@@ -184,9 +190,7 @@ namespace TobiiFormApp
             }
             else if(currentFilter == (int)filters.Euro)
             {
-                
                 filteredPoint = new Point((int)filterX.Filter(point.X, rate), (int)filterY.Filter(point.Y, rate));
-                //filteredPoint = new Point(point.X, point.Y);
             }
             prevPos = filteredPoint; //set the previous point to current point
 
@@ -195,6 +199,13 @@ namespace TobiiFormApp
 
         private static void toggleGazeMouse(object sender, EventArgs e)
         {
+            alpha_smooth = float.Parse(form.textBox_alpha.Text);
+            beta = double.Parse(form.textBox_beta.Text);
+            mincutoff = double.Parse(form.textBox_mincutoff.Text);
+
+            filterX = new OneEuroFilter(mincutoff, beta);
+            filterY = new OneEuroFilter(mincutoff, beta);
+
             enableGazeMouseControl = !enableGazeMouseControl;
         } 
 
@@ -227,6 +238,7 @@ namespace TobiiFormApp
             Application.SetCompatibleTextRenderingDefault(false);
 
             form = new Form1();
+
 
             subscribeGlobalKeyHook();
 
