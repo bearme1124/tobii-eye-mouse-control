@@ -28,6 +28,11 @@ namespace TobiiFormApp
         private static IKeyboardMouseEvents m_GlobalHook;
 
         #region EUROFilter
+
+        private static readonly double rate = 122; // 이 값은 tobii로 부터 받아오는 값
+        private static readonly double mincutoff = 1.0;
+        private static readonly double beta = 1.0;
+
         public static long GetTimestamp() // 이 값에 1000을 나눠야 second 단위임.
         {
             return DateTimeOffset.Now.ToUnixTimeMilliseconds();
@@ -112,6 +117,7 @@ namespace TobiiFormApp
         }
         #endregion
 
+        #region Keyboard
         private static void GlobalHookKeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Space)
@@ -149,6 +155,7 @@ namespace TobiiFormApp
             m_GlobalHook.KeyUp -= GlobalHookKeyUp;
             m_GlobalHook.Dispose();
         }
+        #endregion
 
         //Applies a filter to the point based on currently selected setting
         private static Point SmoothFilter(Point point)
@@ -175,8 +182,9 @@ namespace TobiiFormApp
             }
             else if(currentFilter == (int)filters.Euro)
             {
-                OneEuroFilter oneEuroFilter
-                filteredPoint = new Point(point.X, point.Y);
+                OneEuroFilter filter = new OneEuroFilter(mincutoff, beta);
+                filteredPoint = new Point((int)filter.Filter(point.X, rate), (int)filter.Filter(point.Y, rate));
+                //filteredPoint = new Point(point.X, point.Y);
             }
             prevPos = filteredPoint; //set the previous point to current point
 
