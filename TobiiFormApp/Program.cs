@@ -29,10 +29,10 @@ namespace TobiiFormApp
 
         #region EUROFilter
 
-        private static readonly double rate = 122; // 이 값은 tobii로 부터 받아오는 값
-        private static readonly double mincutoff = 1.0;
-        private static readonly double beta = 1.0;
-
+        private static readonly double rate = 133; // 이 값은 tobii로 부터 받아오는 값
+        private static readonly double mincutoff = 0.007; // 여기 바꾸거나
+        private static readonly double beta = 0.03; //여기 바꾸거나
+         
         public static long GetTimestamp() // 이 값에 1000을 나눠야 second 단위임.
         {
             return DateTimeOffset.Now.ToUnixTimeMilliseconds();
@@ -113,7 +113,7 @@ namespace TobiiFormApp
                 }
                 hatXPrev = hatX;
                 return hatX;
-            }
+             }
         }
         #endregion
 
@@ -158,6 +158,8 @@ namespace TobiiFormApp
         #endregion
 
         //Applies a filter to the point based on currently selected setting
+        public static OneEuroFilter filterX = new OneEuroFilter(mincutoff, beta);
+        public static OneEuroFilter filterY = new OneEuroFilter(mincutoff, beta);
         private static Point SmoothFilter(Point point)
         {
             //checks which filter is selected
@@ -165,14 +167,14 @@ namespace TobiiFormApp
 
             Point filteredPoint = point;
 
-            if (!hasPrevPos)
+            if (!hasPrevPos) 
             {
                 prevPos = point;
                 hasPrevPos = true;
             }
 
             if(currentFilter == (int)filters.Smooth)
-            {
+             {
                 filteredPoint = new Point((int)((point.X * alpha_smooth) + (prevPos.X * (1.0f - alpha_smooth))),
                                                 (int)((point.Y * alpha_smooth) + (prevPos.Y * (1.0f - alpha_smooth))));
             }
@@ -182,8 +184,8 @@ namespace TobiiFormApp
             }
             else if(currentFilter == (int)filters.Euro)
             {
-                OneEuroFilter filter = new OneEuroFilter(mincutoff, beta);
-                filteredPoint = new Point((int)filter.Filter(point.X, rate), (int)filter.Filter(point.Y, rate));
+                
+                filteredPoint = new Point((int)filterX.Filter(point.X, rate), (int)filterY.Filter(point.Y, rate));
                 //filteredPoint = new Point(point.X, point.Y);
             }
             prevPos = filteredPoint; //set the previous point to current point
@@ -194,7 +196,7 @@ namespace TobiiFormApp
         private static void toggleGazeMouse(object sender, EventArgs e)
         {
             enableGazeMouseControl = !enableGazeMouseControl;
-        }
+        } 
 
         private static void checkFilterSettings()
         {
